@@ -15,4 +15,11 @@ source .venv/bin/activate  # Or equivalent environment setup
 pip install -r requirements.txt
 ```
 
-Running the project is currently not possible: we have a collection of functions.
+To run the project, just run the main script:
+
+```bash
+python open_minded_final.py
+```
+
+A folder _figures_ with figures will be created: these are the figures that you can
+find in the corresponding paper [link](www.google.com).
