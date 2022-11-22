@@ -23,3 +23,8 @@ python open_minded_final.py
 
 A folder _figures_ with figures will be created: these are the figures that you can
 find in the corresponding paper [link](www.google.com).
+
+## Code
+
+The main magic happens in the file (and corresponding function) expected_accuracy.py.
+....
