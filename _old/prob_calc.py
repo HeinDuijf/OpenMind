@@ -176,3 +176,89 @@ def expected_accuracy(
                 + probability_tie / 2
             )
     return probability_right
+
+
+def find_tipping_evaluation_content(
+    competence_associate: float,
+    competence_opposer: float,
+    source_evaluative_capacity: float,
+    degree_open_mindedness: int = 4,
+):
+    """Function returns the tipping point for content evaluative capacity where
+    open-mindedness becomes epistemically
+    beneficial for an open-minded agent with specified degree of open-mindedness,
+    competences and
+    source evaluative capacities.
+    The idea is to step-wise increase (or decrease) the content evaluative capacity
+     until the point where
+    open-mindedness is epistemically beneficial.
+    Parameters
+    ----------
+    degree_open_mindedness: int
+        Degree of open-mindedness
+    competence_associate: float
+        Competence level of associates, i.e., agents with aligned interests
+    competence_opposer: float
+        Competence level of opposers, i.e., agents with opposed interests
+    source_evaluative_capacity: float
+        Level of source evaluative capacity
+    Returns
+    -------
+    evaluation_content: float
+        Tipping for content evaluative capacity to become epistemically beneficial"""
+
+    # 0. Initialize variables
+    evaluation_content: float = 0.5
+    step_size = 0.01
+    probability_companion_right = accuracy_information(
+        source_evaluative_capacity=source_evaluative_capacity,
+        competence_associate=competence_associate,
+        competence_opposer=competence_opposer,
+        content_evaluation_right=evaluation_content,
+        content_evaluation_wrong=evaluation_content,
+    )
+    probability_right = expected_accuracy(
+        degree_open_mindedness=degree_open_mindedness,
+        probability_companion_right=probability_companion_right,
+        competence_associate=competence_associate,
+    )
+    # 1. If probability_right is lower than competence_associate, the idea is to
+    # step-wise increase the content
+    # evaluative capacity until the point where open-mindedness is epistemically
+    # beneficial
+    if probability_right < competence_associate:
+        while probability_right < competence_associate:
+            evaluation_content = evaluation_content + step_size
+            probability_companion_right = accuracy_information(
+                source_evaluative_capacity=source_evaluative_capacity,
+                competence_associate=competence_associate,
+                competence_opposer=competence_opposer,
+                content_evaluation_right=evaluation_content,
+                content_evaluation_wrong=evaluation_content,
+            )
+            probability_right = expected_accuracy(
+                degree_open_mindedness=degree_open_mindedness,
+                probability_companion_right=probability_companion_right,
+                competence_associate=competence_associate,
+            )
+    # 2. If probability_right is higher than competence_associate, the idea is to
+    # step-wise decrease the content
+    # evaluative capacity until the point where open-mindedness is no longer
+    # epistemically beneficial
+    else:
+        while probability_right > competence_associate:
+            evaluation_content = evaluation_content - step_size
+            probability_companion_right = accuracy_information(
+                source_evaluative_capacity=source_evaluative_capacity,
+                competence_associate=competence_associate,
+                competence_opposer=competence_opposer,
+                content_evaluation_right=evaluation_content,
+                content_evaluation_wrong=evaluation_content,
+            )
+            probability_right = expected_accuracy(
+                degree_open_mindedness=degree_open_mindedness,
+                probability_companion_right=probability_companion_right,
+                competence_associate=competence_associate,
+            )
+        evaluation_content = evaluation_content + step_size
+    return round(evaluation_content, 2)
