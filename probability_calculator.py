@@ -109,3 +109,47 @@ class ProbabilityCalculator:
         )
 
         return p_me_correct_causing_tie + p_me_wrong_causing_tie
+
+    def find_tipping_evaluation_content(self) -> float:
+        """Function returns the tipping point for content evaluative capacity where
+        open-mindedness becomes epistemically beneficial for an open-minded agent with
+        specified degree of open-mindedness, competences and source evaluative
+        capacities.
+
+        The idea is to step-wise increase (or decrease) the content evaluative capacity
+        until the point where open-mindedness is epistemically beneficial.
+
+        Returns
+        -------
+        evaluation_content: float
+            Tipping for content evaluative capacity to become epistemically beneficial
+        """
+
+        # 0. Initialize variables
+        step_size = 0.01
+        probability_right = self.compute_probability_right()
+
+        if probability_right < self.competence_associate:
+            # step-wise increase the content evaluative capacity until
+            # open-mindedness is epistemically beneficial
+            while probability_right < self.competence_associate:
+                print(probability_right)
+                self.source_evaluative_capacity = (
+                    self.source_evaluative_capacity + step_size
+                )
+                self.probability_companion_right = self.accuracy_information()
+                probability_right = self.compute_probability_right()
+        else:
+            # step-wise decrease the content evaluative capacity until
+            # open-mindedness is no longer epistemically beneficial
+            while probability_right > self.competence_associate:
+                print(probability_right)
+                self.source_evaluative_capacity = (
+                    self.source_evaluative_capacity - step_size
+                )
+                self.probability_companion_right = self.accuracy_information()
+                probability_right = self.compute_probability_right()
+            self.source_evaluative_capacity = (
+                self.source_evaluative_capacity + step_size
+            )
+        return round(self.source_evaluative_capacity, 2)
