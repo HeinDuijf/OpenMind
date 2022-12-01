@@ -8,10 +8,14 @@ def accuracy_information(
     content_evaluation_right: float = 0.5,
     content_evaluation_wrong: float = 0.5,
 ):
-    """Function returns the information accuracy when the agent evaluates the source and the content.
-    The idea is to calculate the probability that the agent accepts an argument that survived the source evaluation,
-    the probability that an accepted argument is right and the probability that an accepted argument is wrong.
-    NOTE: The companion's accuracy (without content evaluation) is given by setting content evaluation to 0.5.
+    """Function returns the information accuracy when the agent evaluates the source
+    and the content.
+    The idea is to calculate the probability that the agent accepts an argument that
+    survived the source evaluation,
+    the probability that an accepted argument is right and the probability that an
+    accepted argument is wrong.
+    NOTE: The companion's accuracy (without content evaluation) is given by setting
+    content evaluation to 0.5.
     Parameters
     ----------
     competence_associate: float
@@ -21,20 +25,25 @@ def accuracy_information(
     source_evaluative_capacity: float
         Level of source evaluative capacity
     content_evaluation_right: float = 0.5
-        Level of content evaluative capacity for right content, i.e., content that supports the alternative that is in
+        Level of content evaluative capacity for right content, i.e., content that
+        supports the alternative that is in
         the agent's best interest
     content_evaluation_wrong: float = 0.5
-        Level of content evaluative capacity for wrong content, i.e., content that does not support the alternative
+        Level of content evaluative capacity for wrong content, i.e., content that does
+        not support the alternative
         that is in the agent's best interest
     Returns
     -------
     information_accuracy: float
-        The probability that an accepted piece of information supports the right alternative, i.e., the alternative is
+        The probability that an accepted piece of information supports the right
+        alternative, i.e., the alternative is
         in the agent's best interest"""
 
-    # 1. Calculate the probability that a piece of information from an accepted source supports the right alternative
+    # 1. Calculate the probability that a piece of information from an accepted source
+    # supports the right alternative
     # and survives both source and content evaluation:
-    # (The probability that the source is an associate who produced a right argument plus
+    # (The probability that the source is an associate who produced a right argument
+    # plus
     # the probability that the source is an opposer who produced a right argument) times
     # the probability that a right argument is correctly identified (and thus accepted)
     probability_right = (
@@ -62,11 +71,15 @@ def expected_accuracy(
     content_evaluative_capacity: float = 0.5,
     probability_companion_right: float = "None",
 ):
-    """Function returns the expected accuracy of an open-minded agent given certain input.
+    """Function returns the expected accuracy of an open-minded agent given certain
+    input.
      Input can be either:
-        a) a given degree of open-mindedness, the principal agent's competence and the companion's accuracy, or
-        b) a given degree of open-mindedness, competences, and source and content evaluative capacity
-        In other words, one can either input the companion's accuracy directly or this function calculates it from
+        a) a given degree of open-mindedness, the principal agent's competence and the
+        companion's accuracy, or
+        b) a given degree of open-mindedness, competences, and source and content
+        evaluative capacity
+        In other words, one can either input the companion's accuracy directly or this
+        function calculates it from
         the other input
     Parameters
     ----------
@@ -79,15 +92,18 @@ def expected_accuracy(
     source_evaluative_capacity: float
         Level of source evaluative capacity
     content_evaluative_capacity: float = 0.5
-        Level of content evaluative capacity for right content, i.e., content that supports the alternative that is in
+        Level of content evaluative capacity for right content, i.e., content that
+        supports the alternative that is in
         the agent's best interest
     probability_companion_right: float
-        The probability that a companion supports the right alternative, i.e., the alternative that is in the
+        The probability that a companion supports the right alternative, i.e., the
+        alternative that is in the
         agent's best interest
     Returns
     -------
     probability_right: float
-        The probability that an open-minded agent selects the right alternative, i.e., the alternative that is in
+        The probability that an open-minded agent selects the right alternative, i.e.,
+        the alternative that is in
         her best interest"""
 
     # 0. Initialize variables
@@ -110,7 +126,8 @@ def expected_accuracy(
             )
         # 2.a. Case where degree_open_mindedness is even and there can be no ties.
         if (degree_open_mindedness % 2) == 0:
-            # the group that determines the individual vote is odd, so I win in two events:
+            # the group that determines the individual vote is odd,
+            # so I win in two events:
             # (a) exactly half of the neighbors are correct and I am correct or
             # (b) more than half of the neighbors are correct
             probability_right = binom.pmf(
@@ -124,7 +141,8 @@ def expected_accuracy(
             )
         # 2.b. Case where degree_open_mindedness is odd and there can be ties.
         else:
-            # the group that determines the individual vote is even, so a tie occurs in two events:
+            # the group that determines the individual vote is even,
+            # so a tie occurs in two events:
             # (a) exactly half of the neighbors minus 1 are correct and I am correct
             # (b) exactly half of the neighbors plus 1 are correct and I am incorrect
             probability_tie = binom.pmf(
@@ -138,7 +156,8 @@ def expected_accuracy(
             ) * (
                 1 - competence_associate
             )
-            # the group that determines the individual vote is even, so I win in three events:
+            # the group that determines the individual vote is even,
+            # so I win in three events:
             # (a) exactly half of the neighbors plus 1 are correct and I am correct
             # (b) more than half of the neighbors plus 1 are correct
             # (c) there's a tie and the random choice is correct
