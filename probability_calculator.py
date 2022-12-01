@@ -1,7 +1,7 @@
 from scipy.stats import binom
 
 
-class ComputeProbabilityRight:
+class ProbabilityCalculator:
     def __init__(
         self,
         degree_open_mindedness: int = 10,
@@ -18,12 +18,13 @@ class ComputeProbabilityRight:
         self.content_evaluative_capacity = content_evaluative_capacity
         self.probability_companion_right = probability_companion_right
 
-        # TODO: in the docstring we describe this thing as _expected accuracy_
+        # TODO: in the original docstring we describe this thing as _expected accuracy_
+        # What is the better name?
         self.probability_right: float = 0
         if self.probability_companion_right is None:
             self.probability_companion_right = self.accuracy_information()
 
-    def __call__(self) -> float:
+    def compute_probability_right(self) -> float:
         # Special case of close-minded agent
         if self.degree_open_mindedness == 0:
             return self.competence_associate
@@ -38,7 +39,7 @@ class ComputeProbabilityRight:
 
     def probability_right_even_degree(self):
         # I win in two events:
-        # (a) exactly half of the neighbors are correct and I am correct or
+        # (a) exactly half of the neighbors are correct and I am correct
         p_me_correct_causing_win = self.competence_associate * binom.pmf(
             self.degree_open_mindedness / 2,
             self.degree_open_mindedness,
