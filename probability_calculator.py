@@ -18,9 +18,6 @@ class ProbabilityCalculator:
         self.content_evaluative_capacity = content_evaluative_capacity
         self.probability_companion_right = probability_companion_right
 
-        # TODO: in the original docstring we describe this thing as _expected accuracy_
-        # What is the better name?
-        self.probability_right: float = 0
         if self.probability_companion_right is None:
             self.probability_companion_right = self.accuracy_information()
 
@@ -31,11 +28,9 @@ class ProbabilityCalculator:
 
         # Otherwise, compute the expected accuracy
         if (self.degree_open_mindedness % 2) == 0:
-            self.probability_right = self.probability_right_even_degree()
+            return self.probability_right_even_degree()
         else:
-            self.probability_right = self.probability_right_uneven_degree()
-
-        return self.probability_right
+            return self.probability_right_uneven_degree()
 
     def probability_right_even_degree(self):
         # I win in two events:
@@ -133,7 +128,6 @@ class ProbabilityCalculator:
             # step-wise increase the content evaluative capacity until
             # open-mindedness is epistemically beneficial
             while probability_right < self.competence_associate:
-                print(probability_right)
                 self.source_evaluative_capacity = (
                     self.source_evaluative_capacity + step_size
                 )
@@ -143,7 +137,6 @@ class ProbabilityCalculator:
             # step-wise decrease the content evaluative capacity until
             # open-mindedness is no longer epistemically beneficial
             while probability_right > self.competence_associate:
-                print(probability_right)
                 self.source_evaluative_capacity = (
                     self.source_evaluative_capacity - step_size
                 )
