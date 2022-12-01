@@ -18,7 +18,7 @@ pip install -r requirements.txt
 To run the project, just run the main script:
 
 ```bash
-python open_minded_final.py
+python main.py
 ```
 
 A folder _figures_ with figures will be created: these are the figures that you can
