@@ -44,18 +44,15 @@ if __name__ == "__main__":
     figure_individual_calculated_accuracy(
         source_evaluative_capacity=0.7,
         max_degree_open_mindedness=20,
-        save=True,
         filename=f"{folder_name}/Figure_graph_70_zoom",
     )
     figure_individual_calculated_accuracy(
         source_evaluative_capacity=0.3,
         max_degree_open_mindedness=50,
-        save=True,
         filename=f"{folder_name}/Figure_graph_30",
     )
     figure_individual_calculated_accuracy(
         source_evaluative_capacity=1.0,
         max_degree_open_mindedness=50,
-        save=True,
         filename=f"{folder_name}/Figure_graph_ 100",
     )
