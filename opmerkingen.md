@@ -18,3 +18,4 @@
     code makkelijk kan delen tussen projecten, d.w.z. misschien wil ik de functies 
     uit `Open mind` ook gebruiken in `Majority voting`. Moet ik voor ieder project 
     ook weer een nieuwe `venv` aanmaken?
+- Hoe maak ik dit project beschikbaar op Github?
