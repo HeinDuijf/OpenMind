@@ -25,6 +25,9 @@ Output paths to refresh: $FilePath$
 Working directory: $ProjectFileDir$
 ```
 
+Since PyCharm auto-saves frequently, make sure to uncheck all boxes under `Advanced 
+options`.
+
 ## Setting up isort
 This is similar to the black setup. <br>
 Go to `preferences`-`tools`-`file watchers`-`[add]`-`custom`.
