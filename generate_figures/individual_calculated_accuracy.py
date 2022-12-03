@@ -28,13 +28,6 @@ def figure_individual_calculated_accuracy(
     Returns
     -------
     Plot of individual accuracy"""
-    # Error handling
-    if source_evaluative_capacity > 1 or source_evaluative_capacity < 0:
-        raise ValueError(
-            f"Source evaluation capacity has value {source_evaluative_capacity}"
-            ", it should between 0 and 1."
-        )
-
     # 0. Initialize variables
     degrees_of_open_mindedness = np.arange(
         2, max_degree_open_mindedness + 1, 2, dtype=int
