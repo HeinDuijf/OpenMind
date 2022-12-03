@@ -3,8 +3,8 @@ import os
 import numpy as np
 import pandas as pd
 
+from accuracy_calculator import Agent
 from generate_figures.plot_functions import plot_heatmap
-from probability_calculator import Agent
 
 
 def figure_heatmap_added_accuracy_content(filename: str = None):
@@ -36,11 +36,11 @@ def figure_heatmap_added_accuracy_content(filename: str = None):
     for companion_accuracy in companion_accuracies:
         for content_evaluative_capacity in content_evaluative_capacities:
             information_accuracy = Agent(
-                probability_companion_right=companion_accuracy,
+                companion_accuracy=companion_accuracy,
                 content_evaluative_capacity=content_evaluative_capacity,
             ).accuracy_information()
             df.at[companion_accuracy, content_evaluative_capacity] = round(
-                float(information_accuracy - companion_accuracy), 2
+                information_accuracy - companion_accuracy, 2
             )
 
     # 2. Configure plot parameters
