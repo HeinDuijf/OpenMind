@@ -2,8 +2,8 @@ import os
 
 import pandas as pd
 
+from accuracy_calculator import Agent
 from generate_figures.plot_functions import plot_heatmap
-from probability_calculator import Agent
 
 
 def figure_heatmap_content_only(
@@ -43,16 +43,14 @@ def figure_heatmap_content_only(
     # 1. Generate data about expected accuracy for various parameter settings
     for competence in competences:
         for content_evaluative_capacity in content_evaluative_capacities:
-            prob_calculator = Agent(
+            benefit_open_mind = Agent(
                 degree_open_mindedness=degree_open_mindedness,
                 competence_associate=competence,
                 competence_opposer=competence - advantage,
                 source_evaluative_capacity=0.5,
                 content_evaluative_capacity=content_evaluative_capacity,
-            )
-            df.at[competence, content_evaluative_capacity] = round(
-                prob_calculator.compute_probability_right() - competence, 2
-            )
+            ).benefit_open_mind()
+            df.at[competence, content_evaluative_capacity] = round(benefit_open_mind, 2)
 
             if df.at[competence, content_evaluative_capacity] <= 0:
                 mask.at[competence, content_evaluative_capacity] = True

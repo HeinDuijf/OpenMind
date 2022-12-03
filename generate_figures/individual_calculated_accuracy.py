@@ -3,8 +3,8 @@ import os
 import numpy as np
 import pandas as pd
 
+from accuracy_calculator import Agent
 from generate_figures.plot_functions import plot_lines
-from probability_calculator import Agent
 
 
 def figure_individual_calculated_accuracy(
@@ -47,13 +47,12 @@ def figure_individual_calculated_accuracy(
 
     for degree_of_open_mindedness in degrees_of_open_mindedness:
         for competence in competences:
-            accuracy = Agent(
+            df.at[degree_of_open_mindedness, competence] = Agent(
                 degree_open_mindedness=degree_of_open_mindedness,
                 competence_associate=competence,
                 competence_opposer=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
-            ).compute_probability_right()
-            df.at[degree_of_open_mindedness, competence] = accuracy - competence
+            ).benefit_open_mind()
 
     # 2. Configure plot parameters
     if max_degree_open_mindedness != 50:

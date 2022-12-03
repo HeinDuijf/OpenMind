@@ -1,10 +1,9 @@
 import os
 
-import numpy as np
 import pandas as pd
 
+from find_tipping_evaluation_content import find_tipping_evaluation_content
 from generate_figures.plot_functions import plot_heatmap
-from probability_calculator import find_tipping_evaluation_content
 
 
 def figure_heatmap_tipping_evaluation_content(
@@ -41,17 +40,13 @@ def figure_heatmap_tipping_evaluation_content(
     # 1. Generate data about tipping points for various parameter settings
     for competence in competences:
         for source_evaluative_capacity in source_evaluative_capacities:
-            df.at[
-                competence, source_evaluative_capacity
-            ] = find_tipping_evaluation_content(
+            tipping_point = find_tipping_evaluation_content(
                 competence_associate=competence,
                 competence_opposer=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
                 degree_open_mindedness=degree_open_mindedness,
             )
-            df.at[competence, source_evaluative_capacity] = round(
-                df.at[competence, source_evaluative_capacity], 2
-            )
+            df.at[competence, source_evaluative_capacity] = round(tipping_point, 2)
 
     # 2. Configure plot parameters
     cbar_ticks = [0.50, 0.55, 0.60, 0.65]

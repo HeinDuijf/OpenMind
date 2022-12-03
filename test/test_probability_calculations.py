@@ -1,5 +1,5 @@
 from _old.prob_calc import accuracy_information, expected_accuracy
-from probability_calculator import ProbabilityCalculator
+from accuracy_calculator import Agent
 
 
 def test_accuracy_information():
@@ -18,7 +18,7 @@ def test_accuracy_information():
 
     new_params = base_params.copy()
     new_params["content_evaluative_capacity"] = content_evaluative_capacity
-    new_ia = ProbabilityCalculator(**new_params).accuracy_information()
+    new_ia = Agent(**new_params).accuracy_information()
 
     assert old_ia == new_ia
 
@@ -34,7 +34,7 @@ def test_compute_probability_right():
     }
 
     acc_old = expected_accuracy(**default_params)
-    acc_new = ProbabilityCalculator(**default_params).compute_probability_right()
+    acc_new = Agent(**default_params).accuracy_open_mind()
     assert acc_old == acc_new
 
     some_other_params = {
@@ -43,11 +43,11 @@ def test_compute_probability_right():
         "competence_associate": 0.9,
         "source_evaluative_capacity": 0.5,
         "content_evaluative_capacity": 0.5,
-        "probability_companion_right": 0.2,
+        "companion_accuracy": 0.2,
     }
 
     acc_old = expected_accuracy(**some_other_params)
-    acc_new = ProbabilityCalculator(**some_other_params).compute_probability_right()
+    acc_new = Agent(**some_other_params).accuracy_open_mind()
     assert acc_old == acc_new
 
     different_capacities = {
@@ -56,9 +56,9 @@ def test_compute_probability_right():
         "competence_associate": 0.9,
         "source_evaluative_capacity": 0.4,
         "content_evaluative_capacity": 0.9,
-        "probability_companion_right": 0.2,
+        "companion_accuracy": 0.2,
     }
 
     acc_old = expected_accuracy(**different_capacities)
-    acc_new = ProbabilityCalculator(**different_capacities).compute_probability_right()
+    acc_new = Agent(**different_capacities).accuracy_open_mind()
     assert acc_old == acc_new

@@ -1,9 +1,11 @@
 import os
 
-from generate_figures.added_accuracy_content import figure_added_accuracy_content
+from generate_figures.heatmap_added_accuracy_content import (
+    figure_heatmap_added_accuracy_content,
+)
 from generate_figures.heatmap_content_only import figure_heatmap_content_only
 from generate_figures.heatmap_source import figure_heatmap_source
-from generate_figures.heatmap_tipping_evalution_content import (
+from generate_figures.heatmap_tipping_evaluation_content import (
     figure_heatmap_tipping_evaluation_content,
 )
 from generate_figures.individual_calculated_accuracy import (
@@ -30,7 +32,7 @@ if __name__ == "__main__":
         advantage=0,
         filename=f"{folder_name}/Figure_heatmap_source_evaluation_n4",
     )
-    figure_added_accuracy_content(
+    figure_heatmap_added_accuracy_content(
         filename=f"{folder_name}/Figure_added_accuracy_content"
     )
     figure_heatmap_content_only(
