@@ -1,10 +1,10 @@
 import os
 
-import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
-from generate_figures.plot_vars import PlotVars
-from probability_calculator import ProbabilityCalculator
+from generate_figures.plot_functions import plot_lines
+from probability_calculator import Agent
 
 
 def figure_individual_calculated_accuracy(
@@ -36,57 +36,48 @@ def figure_individual_calculated_accuracy(
         )
 
     # 0. Initialize variables
-    xx_values = np.arange(2, max_degree_open_mindedness + 1, 2)
-    competence_values = np.arange(0.6, 0.90, 0.05)
-    competence_max = max(competence_values) + 0.1
-    competence_range = competence_max - min(competence_values)
-    plt.figure(figsize=PlotVars.graph_size)
+    degrees_of_open_mindedness = np.arange(
+        2, max_degree_open_mindedness + 1, 2, dtype=int
+    )
+    competences = np.arange(0.6, 0.9, 0.05)
+    competences = np.round(competences, 2)
 
-    # 1. Plots
-    for competence in competence_values:
-        color = PlotVars.cmap((competence_max - competence) / competence_range)
-        competence = round(competence, 2)
-        label = "Competence " + str(competence)
-        # y_values give the expected accuracy minus competence
-        y_values = [
-            ProbabilityCalculator(
+    # 1. Generate data for plotting
+    df = pd.DataFrame(index=degrees_of_open_mindedness, columns=competences)
+
+    for degree_of_open_mindedness in degrees_of_open_mindedness:
+        for competence in competences:
+            accuracy = Agent(
+                degree_open_mindedness=degree_of_open_mindedness,
                 competence_associate=competence,
                 competence_opposer=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
-                degree_open_mindedness=x,
             ).compute_probability_right()
-            - competence
-            for x in xx_values
-        ]
-        plt.plot(xx_values, y_values, color=color, label=label)
+            df.at[degree_of_open_mindedness, competence] = accuracy - competence
 
-    # 2. Styling and labelling plot
-    plt.rcParams.update(
-        {
-            "font.family": PlotVars.font_style["family"],
-            "font.size": PlotVars.font_style["size"],
-        }
-    )
-    plt.title(
-        "Epistemic benefits where the source evaluative capacity ($p_{ES}$) is "
-        + str(source_evaluative_capacity)
-        + "\n"
-    )
-    plt.ylabel("Epistemic benefits")
-    plt.xlabel("Degree of open-mindedness ($n$)")
+    # 2. Configure plot parameters
     if max_degree_open_mindedness != 50:
-        plt.xticks(np.arange(0, max_degree_open_mindedness + 1, 2))
+        xticks = np.arange(0, max_degree_open_mindedness + 1, 2)
     else:
-        plt.xticks(np.arange(0, 51, 5))
-    plt.axhline(0, color="k", linewidth=1)
-    plt.xlim([0, max_degree_open_mindedness])
-    plt.legend(loc="lower right")
+        xticks = np.arange(0, 51, 5)
+    xlim = [0, max_degree_open_mindedness]
+    xlabel = "Degree of open-mindedness ($n$)"
+    ylabel = "Epistemic benefits"
+    title = (
+        f"Epistemic benefits where the source evaluative capacity ($p_{{ES}}$) is"
+        f" {source_evaluative_capacity}\n"
+    )
 
-    # 3. Showing or saving plot
-    if filename:
-        plt.savefig(fname=filename, dpi="figure")
-    else:
-        plt.show()
+    # 3. Line plot
+    plot_lines(
+        dataframe=df,
+        xticks=xticks,
+        xlim=xlim,
+        xlabel=xlabel,
+        ylabel=ylabel,
+        title=title,
+        filename=filename,
+    )
 
 
 if __name__ == "__main__":

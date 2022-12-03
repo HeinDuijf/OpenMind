@@ -1,18 +1,14 @@
 import os
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 
-from generate_figures.plot_vars import PlotVars
-from probability_calculator import ProbabilityCalculator
+from generate_figures.plot_functions import plot_heatmap
+from probability_calculator import Agent
 
 
 def figure_heatmap_source(
-    degree_open_mindedness: int,
-    advantage: float = 0,
-    filename: str = None,
+    degree_open_mindedness: int, advantage: float = 0, filename: str = None,
 ):
     """Generates heatmap of epistemic benefit of open_mindedness for a range of
     competences and source evaluative capacities.
@@ -32,64 +28,65 @@ def figure_heatmap_source(
     -------
     Heatmap of epistemic benefit"""
     # 0. Initialize variables
+    competences = [0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]
+    competences.reverse()
+    source_evaluative_capacities = [0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]
+    df = pd.DataFrame(
+        index=competences, columns=source_evaluative_capacities, dtype=float
+    )
+    mask = pd.DataFrame(
+        False, index=competences, columns=source_evaluative_capacities, dtype=bool,
+    )
 
-    index = [0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]
-    index.reverse()
-    columns = [0.6, 0.65, 0.70, 0.75, 0.8, 0.85, 0.9]
-    data = np.zeros((len(index), len(columns)))
-    mask = np.zeros_like(data)
     # 1. Generate data about expected accuracy for various parameter settings
-    for x, c in enumerate(index):
-        for y, p in enumerate(columns):
-            prob_calculator = ProbabilityCalculator(
+    for competence in competences:
+        for source_evaluative_capacity in source_evaluative_capacities:
+            prob_calculator = Agent(
                 degree_open_mindedness=degree_open_mindedness,
-                competence_opposer=c - advantage,
-                competence_associate=c,
-                source_evaluative_capacity=p,
+                competence_opposer=competence - advantage,
+                competence_associate=competence,
+                source_evaluative_capacity=source_evaluative_capacity,
             )
-            data[x, y] = prob_calculator.compute_probability_right() - c
-            if data[x, y] < 0:
-                mask[x, y] = True
-            data[x, y] = round(data[x, y], 2)
+            df.at[competence, source_evaluative_capacity] = round(
+                prob_calculator.compute_probability_right() - competence, 2
+            )
+            if df.at[competence, source_evaluative_capacity] <= 0:
+                mask.at[competence, source_evaluative_capacity] = True
+    # df = pd.DataFrame(data, index=competences, columns=source_evaluative_capacities)
 
-    # 2. Plot data as heatmap
+    # 2. Configure plot parameters
     cbar_ticks = [0, 0.05, 0.1, 0.15]
-    df = pd.DataFrame(data, index=index, columns=columns)
-    heatmap_style = PlotVars.heatmap_style(
-        mask, vmin=0.00, vmax=0.15, cbar_ticks=cbar_ticks
+    vmin = 0.00
+    vmax = 0.15
+    title = (
+        f"Epistemic benefits where degree of open-mindedness ($n$) is "
+        f"{degree_open_mindedness}"
     )
-
-    plt.rc("font", **PlotVars.font_style)
-    plt.figure(figsize=PlotVars.figure_size)
-    fig = sns.heatmap(df, **heatmap_style)
-    bottom, top = fig.get_ylim()
-    fig.set_ylim(bottom, top)
-
-    # 3. Styling and labelling plot
-    titletext: str = (
-        "Epistemic benefits where degree of open-mindedness ($n$) is "
-        + str(degree_open_mindedness)
-    )
-    ylabeltext: str = ""
+    ylabel: str = ""
     if advantage > 0:
-        titletext = titletext + "\n and competence advantage is " + str(advantage)
-        ylabeltext = "Competence ($p_A$)"
+        title = f"{title}\n and competence advantage is {advantage}"
+        ylabel = "Competence ($p_A$)"
     elif advantage < 0:
         advantage = -1 * advantage
-        titletext = titletext + "\n and competence disadvantage is " + str(advantage)
-        ylabeltext = "Competence ($p_A$)"
+        title = f"{title}\n and competence disadvantage is {advantage}"
+        ylabel = "Competence ($p_A$)"
     else:
-        titletext = titletext + "\n in a homogeneous community"
-        ylabeltext = "Competence ($p_A$ and $p_O$)"
-    fig.set_title(titletext, **PlotVars.title_style)
-    fig.set_xlabel("Source evaluative capacity ($p_{ES}$)", **PlotVars.label_style)
-    fig.set_ylabel(ylabeltext, **PlotVars.label_style)
+        title = f"{title}\n in a homogeneous community"
+        ylabel = "Competence ($p_A$ and $p_O$)"
+    xlabel = "Source evaluative capacity ($p_{ES}$)"
 
-    # 4. Showing or saving plot
-    if filename:
-        plt.savefig(fname=filename, dpi="figure")
-    else:
-        plt.show()
+    # 3. Plot heatmap
+    plot_heatmap(
+        dataframe=df,
+        title=title,
+        xlabel=xlabel,
+        ylabel=ylabel,
+        vmin=vmin,
+        vmax=vmax,
+        mask=mask,
+        cbar_ticks=cbar_ticks,
+        filename=filename,
+    )
 
 
 if __name__ == "__main__":
