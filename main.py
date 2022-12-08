@@ -14,11 +14,11 @@ from generate_figures.individual_calculated_accuracy import (
 
 if __name__ == "__main__":
     """Saves all figures used in the paper titled 'When should one be open-minded?'
-    in the folder 'figures'.
+    in the folder 'new_figures'.
 
     Returns
     -------
-    All figures in the folder 'figures'"""
+    All figures in the folder 'new_figures'"""
     folder_name = "new_figures"
     os.makedirs(folder_name, exist_ok=True)
 
