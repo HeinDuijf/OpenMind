@@ -61,7 +61,7 @@ def plot_lines(
         xlabel=xlabel,
         ylabel=ylabel,
         figsize=lineplot_size,
-        colormap=cmap,
+        colormap=cmap,  # TODO: colormap not working properly: one of the lines is white
         xticks=xticks,
         xlim=xlim,
     )

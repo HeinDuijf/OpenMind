@@ -12,7 +12,9 @@
   project zitten. Hoe kan ik dit het beste organizeren? Opties die ik zie:
   - Meerdere githubs koppelen aan één python project. Nadeel: Lijkt me foutgevoelig. 
     Ik weet niet hoe je meerdere github projecten koppelt aan één PyCharm project. 
-    Voordeel: Alles zit op één plek in PyCharm.
+    Volgens mij moet ik black, flake8 en isort FileWatchers opnieuw instellen bij 
+    een nieuw project. 
+    Voordeel: Alles zit op één plek in PyCharm. 
   - Voor ieder onderzoeksproject een apart python project en apart github project 
     opzetten. Voordeel: Lijkt me niet foutgevoelig. Nadeel: Ik weet niet hoe je 
     code makkelijk kan delen tussen projecten, d.w.z. misschien wil ik de functies 
