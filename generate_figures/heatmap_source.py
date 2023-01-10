@@ -1,14 +1,16 @@
 import os
 
-import numpy as np
 import pandas as pd
-
 from accuracy_calculator import Agent
+
 from generate_figures.plot_functions import plot_heatmap
 
 
 def figure_heatmap_source(
-    degree_open_mindedness: int, advantage: float = 0, filename: str = None,
+    degree_open_mindedness: int,
+    advantage: float = 0,
+    filename: str = None,
+    save_data: bool = False,
 ):
     """Generates heatmap of epistemic benefit of open_mindedness for a range of
     competences and source evaluative capacities.
@@ -20,6 +22,8 @@ def figure_heatmap_source(
     advantage: float
         The competence advantage of the associating group
         (disadvantage is represented by negative advantage)
+    save_data: bool
+        Save data for testing purposes
 
     filename: str
         Location where the plot is to be saved, if you want to save

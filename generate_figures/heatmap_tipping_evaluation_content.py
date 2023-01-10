@@ -1,8 +1,8 @@
 import os
 
 import pandas as pd
-
 from find_tipping_evaluation_content import find_tipping_evaluation_content
+
 from generate_figures.plot_functions import plot_heatmap
 
 

@@ -1,8 +1,8 @@
 import os
 
 import pandas as pd
-
 from accuracy_calculator import Agent
+
 from generate_figures.plot_functions import plot_heatmap
 
 
