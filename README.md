@@ -1,7 +1,6 @@
 # Open mind
 
-## To do 
- - [ ] Opschonen: ongebruikte/oude folders en files verwijderen.
+## To do
  - [ ] Finalize "how to cite" and link in README
 
 ## Introduction
