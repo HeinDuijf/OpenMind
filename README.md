@@ -3,7 +3,7 @@
 ## To do 
 -[ ] Opschonen: ongebruikte/oude folders en files verwijderen.
 -[ ] Finalize "how to cite" and link in README
-
+ 
 ## Introduction
 This project is associated with the paper titled *"When should one be open-minded?"* 
 [link](). The paper investigates the conditions under which open-mindedness will be 
