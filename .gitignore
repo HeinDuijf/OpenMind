@@ -7,3 +7,5 @@ open_minded
 .venv
 .vscode
 __pycache__
+notes.md
+accuracy_calculator_complex.py
