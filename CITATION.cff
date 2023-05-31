@@ -1,0 +1,9 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Duijf"
+  given-names: "Hein"
+  orcid: "https://orcid.org/0000-0001-6936-306X"
+title: "A model of the epistemic value of open-mindedness"
+doi:
+url: "https://github.com/HeinDuijf/OpenMind"
