@@ -13,7 +13,8 @@ This repository contains code for computing the epistemic benefits of open-minde
 and for creating the figures of the paper. These results are visualized as heatmaps 
 such as:
 
-[![One of the examplary figures of the epistemic value of open-mindedness](/img/Figure_heatmap_source_evaluation_n4.png  "One of the examplary figures of the 
+[![One of the exemplary figures of the epistemic value of open-mindedness]
+(/img/Figure_heatmap_source_evaluation_n4.png  "One of the exemplary figures of the 
 epistemic value of open-mindedness")](https://github.com/HeinDuijf/OpenMind)
 
 Although the paper only focuses on a limited area of the full parameter space, one 
@@ -57,7 +58,7 @@ This repository accompanies an academic paper (under review). In the meantime,
 please cite the code as follows:
 
 [How to cite](CITATION.cff):
-- Duijf, H. (2023). A model of the epistemic value of open-mindedness (Version 1.0.0) 
+- Duijf, H. (2023). A model of the epistemic value of open-mindedness. 
 [Computer software]. https://github.com/HeinDuijf/OpenMind.
 
 Released under the [MIT licence](LICENCE.md).
