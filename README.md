@@ -1,13 +1,8 @@
-# Open mind
+# A model of the epistemic value of open-mindedness
 
-## To do 
-- [ ] Release and zenodo
-- [ ] Create LICENCE.cff
-- [ ] Fix links in README
-
-
-This repository is associated with the paper titled *"When should one be open-minded?"* 
-(under review). The paper investigates the conditions under which open-mindedness will be 
+This repository is associated with a paper on the epistemic value of 
+open-mindedness (under review). The paper investigates the conditions under which 
+open-mindedness will be 
 epistemically valuable. One of the novel features of the analysis is that it starts 
 with some realistic assumptions: (1) people are not perfectly competent in forming their 
 own opinions, (2) people are not perfectly capable of evaluating the claims put forward 
@@ -15,7 +10,11 @@ by others, and (3) people can only give consideration to a limited number of arg
 or opinions.
 
 This repository contains code for computing the epistemic benefits of open-mindedness, 
-and for creating the figures of the paper. 
+and for creating the figures of the paper. These results are visualized as heatmaps 
+such as:
+
+[![One of the examplary figures of the epistemic value of open-mindedness](/img/Figure_heatmap_source_evaluation_n4.png  "One of the examplary figures of the 
+epistemic value of open-mindedness")](https://github.com/HeinDuijf/OpenMind)
 
 Although the paper only focuses on a limited area of the full parameter space, one 
 can use (or extend) the repository to consider other areas of the parameter space. 
@@ -35,7 +34,7 @@ python main.py
 A folder `new_figures` with figures will be created, which correspond to the figures 
 in the paper.
 
-## 2. Organization of the repository
+## 3. Organization of the repository
 
 ### Accuracy calculations
 The central calculations can be found in `accuracy_calculator.py`, which contains the 
@@ -53,13 +52,12 @@ becomes epistemically beneficial above a given content evaluative capacity. The
 script to compute this tipping point can be found in 
 `find_tipping_evaluation_content.py` and the corresponding function. 
 
-## 3. Licence and citation
-This repository accompanies an academic paper (under review). In the meantime, please cite as follows:
+## 4. Licence and citation
+This repository accompanies an academic paper (under review). In the meantime, 
+please cite the code as follows:
 
 [How to cite](CITATION.cff):
-- Duijf, H. (2023). OpenMind (Version 1.0.0) [Computer software]. 
-https://doi.org/..
+- Duijf, H. (2023). A model of the epistemic value of open-mindedness (Version 1.0.0) 
+[Computer software]. https://github.com/HeinDuijf/OpenMind.
 
 Released under the [MIT licence](LICENCE.md).
-
-
