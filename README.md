@@ -13,8 +13,7 @@ This repository contains code for computing the epistemic benefits of open-minde
 and for creating the figures of the paper. These results are visualized as heatmaps 
 such as:
 
-[![One of the exemplary figures of the epistemic value of open-mindedness]
-(/img/Figure_heatmap_source_evaluation_n4.png  "One of the exemplary figures of the 
+[![One of the exemplary figures of the epistemic value of open-mindedness](/img/Figure_heatmap_source_evaluation_n4.png  "One of the exemplary figures of the 
 epistemic value of open-mindedness")](https://github.com/HeinDuijf/OpenMind)
 
 Although the paper only focuses on a limited area of the full parameter space, one 
