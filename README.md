@@ -1,5 +1,7 @@
 # A model of the epistemic value of open-mindedness
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7989054.svg)](https://doi.org/10.5281/zenodo.7989054)
+
 This repository is associated with a paper on the epistemic value of 
 open-mindedness (under review). The paper investigates the conditions under which 
 open-mindedness will be 
@@ -56,8 +58,9 @@ script to compute this tipping point can be found in
 This repository accompanies an academic paper (under review). In the meantime, 
 please cite the code as follows:
 
-[How to cite](CITATION.cff):
-- Duijf, H. (2023). A model of the epistemic value of open-mindedness. 
-[Computer software]. https://github.com/HeinDuijf/OpenMind.
+[How to cite](CITATION.cff): 
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7989054.svg)](https://doi.org/10.5281/zenodo.7989054)
+- Duijf, H. (2023). A model of the epistemic value of open-mindedness (v1.0.0). 
+Zenodo. https://doi.org/10.5281/zenodo.7989054.
 
 Released under the [MIT licence](LICENCE.md).
