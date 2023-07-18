@@ -1,8 +1,8 @@
 import os
 
 import pandas as pd
-
 from find_tipping_evaluation_content import find_tipping_evaluation_content
+
 from generate_figures.plot_functions import plot_heatmap
 
 
@@ -58,7 +58,7 @@ def figure_heatmap_tipping_evaluation_content(
         f"homogeneous community"
     )
     xlabel = "Source evaluative capacity ($p_{ES}$)"
-    ylabel = "Competence ($p_A$ and $p_O$)"
+    ylabel = "Competence ($p_R$ and $p_U$)"
 
     # 3. Plot heatmap
     plot_heatmap(

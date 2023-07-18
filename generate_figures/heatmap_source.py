@@ -1,8 +1,8 @@
 import os
 
 import pandas as pd
-
 from accuracy_calculator import Agent
+
 from generate_figures.plot_functions import plot_heatmap
 
 
@@ -62,14 +62,14 @@ def figure_heatmap_source(
     ylabel: str = ""
     if advantage > 0:
         title = f"{title}\n and competence advantage is {advantage}"
-        ylabel = "Competence ($p_A$)"
+        ylabel = "Competence ($p_R$)"
     elif advantage < 0:
         advantage = -1 * advantage
         title = f"{title}\n and competence disadvantage is {advantage}"
-        ylabel = "Competence ($p_A$)"
+        ylabel = "Competence ($p_R$)"
     else:
         title = f"{title}\n in a homogeneous community"
-        ylabel = "Competence ($p_A$ and $p_O$)"
+        ylabel = "Competence ($p_R$ and $p_U$)"
     xlabel = "Source evaluative capacity ($p_{ES}$)"
 
     # 3. Plot heatmap
