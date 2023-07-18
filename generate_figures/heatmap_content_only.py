@@ -45,8 +45,8 @@ def figure_heatmap_content_only(
         for content_evaluative_capacity in content_evaluative_capacities:
             benefit_open_mind = Agent(
                 degree_open_mindedness=degree_open_mindedness,
-                competence_associate=competence,
-                competence_opposer=competence - advantage,
+                competence_reliable_group=competence,
+                competence_unreliable_group=competence - advantage,
                 source_evaluative_capacity=0.5,
                 content_evaluative_capacity=content_evaluative_capacity,
             ).benefit_open_mind()

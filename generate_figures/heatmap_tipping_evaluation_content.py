@@ -41,8 +41,8 @@ def figure_heatmap_tipping_evaluation_content(
     for competence in competences:
         for source_evaluative_capacity in source_evaluative_capacities:
             tipping_point = find_tipping_evaluation_content(
-                competence_associate=competence,
-                competence_opposer=competence,
+                competence_reliable_group=competence,
+                competence_unreliable_group=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
                 degree_open_mindedness=degree_open_mindedness,
             )

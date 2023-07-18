@@ -2,8 +2,8 @@ import os
 
 import numpy as np
 import pandas as pd
-
 from accuracy_calculator import Agent
+
 from generate_figures.plot_functions import plot_lines
 
 
@@ -42,8 +42,8 @@ def figure_individual_calculated_accuracy(
         for competence in competences:
             df.at[degree_of_open_mindedness, competence] = Agent(
                 degree_open_mindedness=degree_of_open_mindedness,
-                competence_associate=competence,
-                competence_opposer=competence,
+                competence_reliable_group=competence,
+                competence_unreliable_group=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
             ).benefit_open_mind()
 

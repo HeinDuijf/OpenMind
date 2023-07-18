@@ -6,8 +6,8 @@ from accuracy_calculator import Agent
 def test_closed_mind():
     default_params = {
         "degree_open_mindedness": 4,
-        "competence_opposer": 0.7,
-        "competence_associate": 0.6,
+        "competence_unreliable_group": 0.7,
+        "competence_reliable_group": 0.6,
         "source_evaluative_capacity": 0.5,
         "content_evaluative_capacity": 0.5,
     }
@@ -17,26 +17,26 @@ def test_closed_mind():
     for competence_opposer in competence_values:
         params_closed_mind = default_params.copy()
         params_closed_mind["degree_open_mindedness"] = 0
-        params_closed_mind["competence_opposer"] = competence_opposer
+        params_closed_mind["competence_unreliable_group"] = competence_opposer
         assert (
             Agent(**params_closed_mind).accuracy_open_mind()
-            == params_closed_mind["competence_associate"]
+            == params_closed_mind["competence_reliable_group"]
         )
     for competence_associate in competence_values:
         params_closed_mind = default_params.copy()
         params_closed_mind["degree_open_mindedness"] = 0
-        params_closed_mind["competence_associate"] = competence_associate
+        params_closed_mind["competence_reliable_group"] = competence_associate
         assert (
             Agent(**params_closed_mind).accuracy_open_mind()
-            == params_closed_mind["competence_associate"]
+            == params_closed_mind["competence_reliable_group"]
         )
 
 
 def test_benefit_open_mind():
     default_params = {
         "degree_open_mindedness": 4,
-        "competence_opposer": 0.7,
-        "competence_associate": 0.6,
+        "competence_unreliable_group": 0.7,
+        "competence_reliable_group": 0.6,
         "source_evaluative_capacity": 0.5,
         "content_evaluative_capacity": 0.5,
     }
@@ -46,8 +46,8 @@ def test_benefit_open_mind():
         for competence in df.index:
             params = default_params.copy()
             params["degree_open_mindedness"] = 2
-            params["competence_opposer"] = competence
-            params["competence_associate"] = competence
+            params["competence_unreliable_group"] = competence
+            params["competence_reliable_group"] = competence
             params["source_evaluative_capacity"] = float(source_evaluative_capacity)
             assert (
                 round(Agent(**params).benefit_open_mind(), 2)
@@ -60,8 +60,8 @@ def test_benefit_open_mind():
             Agent()
             params = default_params.copy()
             params["degree_open_mindedness"] = 4
-            params["competence_opposer"] = competence
-            params["competence_associate"] = competence
+            params["competence_unreliable_group"] = competence
+            params["competence_reliable_group"] = competence
             params["source_evaluative_capacity"] = float(source_evaluative_capacity)
             assert (
                 round(Agent(**params).benefit_open_mind(), 2)
@@ -72,8 +72,8 @@ def test_benefit_open_mind():
     for content_evaluative_capacity in df.columns:
         for competence in df.index:
             params = default_params.copy()
-            params["competence_opposer"] = competence
-            params["competence_associate"] = competence
+            params["competence_unreliable_group"] = competence
+            params["competence_reliable_group"] = competence
             params["source_evaluative_capacity"] = 0.5
             params["content_evaluative_capacity"] = float(content_evaluative_capacity)
             assert (

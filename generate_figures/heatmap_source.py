@@ -42,8 +42,8 @@ def figure_heatmap_source(
         for source_evaluative_capacity in source_evaluative_capacities:
             benefit_open_mind = Agent(
                 degree_open_mindedness=degree_open_mindedness,
-                competence_opposer=competence - advantage,
-                competence_associate=competence,
+                competence_unreliable_group=competence - advantage,
+                competence_reliable_group=competence,
                 source_evaluative_capacity=source_evaluative_capacity,
             ).benefit_open_mind()
             df.at[competence, source_evaluative_capacity] = round(benefit_open_mind, 2)

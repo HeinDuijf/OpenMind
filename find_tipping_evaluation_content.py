@@ -3,8 +3,8 @@ from accuracy_calculator import Agent
 
 def find_tipping_evaluation_content(
     degree_open_mindedness: int = 10,
-    competence_opposer: float = 0.7,
-    competence_associate: float = 0.6,
+    competence_unreliable_group: float = 0.7,
+    competence_reliable_group: float = 0.6,
     source_evaluative_capacity: float = 0.5,
 ) -> float:
     """Function returns the tipping point for content evaluative capacity where
@@ -25,8 +25,8 @@ def find_tipping_evaluation_content(
     step_size = 0.01
     agent_variables: dict = {
         "degree_open_mindedness": degree_open_mindedness,
-        "competence_opposer": competence_opposer,
-        "competence_associate": competence_associate,
+        "competence_unreliable_group": competence_unreliable_group,
+        "competence_reliable_group": competence_reliable_group,
         "source_evaluative_capacity": source_evaluative_capacity,
     }
 
@@ -34,10 +34,10 @@ def find_tipping_evaluation_content(
     current_accuracy = current_agent.accuracy_open_mind()
 
     # 1. Search for tipping point
-    if current_accuracy < current_agent.competence_associate:
+    if current_accuracy < current_agent.competence_reliable_group:
         # step-wise increase the content evaluative capacity until
         # open-mindedness is epistemically beneficial
-        while current_accuracy < current_agent.competence_associate:
+        while current_accuracy < current_agent.competence_reliable_group:
             new_content_evaluative_capacity = (
                 current_agent.content_evaluative_capacity + step_size
             )
@@ -52,7 +52,7 @@ def find_tipping_evaluation_content(
     else:
         # step-wise decrease the content evaluative capacity until
         # open-mindedness is no longer epistemically beneficial
-        while current_accuracy > current_agent.competence_associate:
+        while current_accuracy > current_agent.competence_reliable_group:
             new_content_evaluative_capacity = (
                 current_agent.content_evaluative_capacity - step_size
             )
