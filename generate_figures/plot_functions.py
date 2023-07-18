@@ -1,14 +1,18 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
+from matplotlib import cm
+from matplotlib.colors import ListedColormap
 
 # Global style variables
 font_style = {"family": "Calibri", "size": 11}
 title_style = {"fontname": "Calibri", "fontsize": "11"}
 label_style = {"fontname": "Calibri", "fontsize": "11"}
-cm = 1 / 2.54  # variable used to convert inches to cm
-heatmap_size = (12 * cm, 10.5 * cm)
-lineplot_size = (16 * cm, 13 * cm)
-cmap = plt.get_cmap("Greys")
+centi = 1 / 2.54  # variable used to convert inches to centimeters
+heatmap_size = (12 * centi, 10.5 * centi)
+lineplot_size = (16 * centi, 13 * centi)
+cmap_heat = cm.get_cmap("Greys")
+cmap_line = ListedColormap(cm.get_cmap("Greys_r")(np.linspace(0.2, 0.8)))
 
 
 def plot_heatmap(
@@ -24,7 +28,7 @@ def plot_heatmap(
 ):
     heatmap_style: dict = {
         "annot": True,
-        "cmap": cmap,
+        "cmap": cmap_heat,
         "mask": mask,
         "vmin": vmin,
         "vmax": vmax,
@@ -61,7 +65,7 @@ def plot_lines(
         xlabel=xlabel,
         ylabel=ylabel,
         figsize=lineplot_size,
-        colormap=cmap,  # TODO: colormap not working properly: one of the lines is white
+        colormap=cmap_line,
         xticks=xticks,
         xlim=xlim,
     )
