@@ -36,12 +36,20 @@ if __name__ == "__main__":
         filename=f"{folder_name}/Figure_added_accuracy_content"
     )
     figure_heatmap_content_only(
+        degree_open_mindedness=2,
+        filename=f"{folder_name}/Figure_heatmap_content_only_n2",
+    )
+    figure_heatmap_content_only(
         degree_open_mindedness=4,
         filename=f"{folder_name}/Figure_heatmap_content_only_n4",
     )
     figure_heatmap_tipping_evaluation_content(
+        degree_open_mindedness=2,
+        filename=f"{folder_name}/Figure_heatmap_tipping_content_n2",
+    )
+    figure_heatmap_tipping_evaluation_content(
         degree_open_mindedness=4,
-        filename=f"{folder_name}/Figure_heatmap_tipping_content",
+        filename=f"{folder_name}/Figure_heatmap_tipping_content_n4",
     )
     figure_individual_calculated_accuracy(
         source_evaluative_capacity=0.7,
