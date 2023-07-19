@@ -71,7 +71,7 @@ def plot_lines(
     )
     competences = dataframe.columns
     legend = [f"Competence {competence}" for competence in competences]
-    plt.legend(legend, loc="lower right")
+    plt.legend(legend, title="Competences ($p_R$ and $p_U$)", loc="lower right", ncol=2)
     plt.axhline(0, color="k", linewidth=1)
 
     if filename:
