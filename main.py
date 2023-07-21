@@ -1,5 +1,6 @@
 import os
 
+from generate_figures.epistemic_potential import figure_epistemic_potential
 from generate_figures.heatmap_added_accuracy_content import (
     figure_heatmap_added_accuracy_content,
 )
@@ -22,6 +23,7 @@ if __name__ == "__main__":
     folder_name = "new_figures"
     os.makedirs(folder_name, exist_ok=True)
 
+    figure_epistemic_potential(f"{folder_name}/Figure_epistemic_potential")
     figure_heatmap_source(
         degree_open_mindedness=2,
         advantage=0,
