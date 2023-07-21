@@ -13,6 +13,7 @@ heatmap_size = (12 * centi, 10.5 * centi)
 lineplot_size = (16 * centi, 13 * centi)
 cmap_heat = cm.get_cmap("Greys")
 cmap_line = ListedColormap(cm.get_cmap("Greys_r")(np.linspace(0.2, 0.8)))
+cmap_line_r = ListedColormap(cm.get_cmap("Greys")(np.linspace(0.2, 0.8)))
 
 
 def plot_heatmap(
