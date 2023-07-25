@@ -3,7 +3,6 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib import cm
 
 from generate_figures.plot_functions import cmap_line_r, lineplot_size
 
@@ -16,9 +15,9 @@ def calculate_tipping_source(competence_reliable_group, competence_unreliable_gr
 
 
 def figure_epistemic_potential(filename: str = None):
-    """Generates plot of companion accuracy depending on the competences of the
-    reliable, for one specific competence of the unreliable group, and coloring the
-    areas above and below the curve.
+    """Generates plot of required source evaluative capacities depending on the
+    competences of the reliable, for one specific competence of the unreliable group,
+    and coloring the areas below the curves.
 
         Parameters
         ----------
@@ -27,7 +26,7 @@ def figure_epistemic_potential(filename: str = None):
 
         Returns
         -------
-        Plot of companion accuracy"""
+        Plot of required source evalutative capacities"""
     # 0. Initialize variables
     competences_reliable_group = np.round(np.linspace(0.50001, 0.9, 41), 2)
     competences_unreliable_group = np.round(np.linspace(0.9, 0.55, 8), 2)
