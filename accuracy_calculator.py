@@ -9,7 +9,7 @@ class Agent:
         competence_reliable_group: float = 0.6,
         source_evaluative_capacity: float = 0.5,
         content_evaluative_capacity: float = 0.5,
-        companion_accuracy: float = None,
+        trustee_accuracy: float = None,
     ):
         self.degree_open_mindedness = degree_open_mindedness
         self.competence_unreliable_group = competence_unreliable_group
@@ -17,10 +17,10 @@ class Agent:
         self.source_evaluative_capacity = source_evaluative_capacity
         self.content_evaluative_capacity = content_evaluative_capacity
         self.accuracy_close_mind = self.competence_reliable_group
-        self.companion_accuracy = companion_accuracy
+        self.trustee_accuracy = trustee_accuracy
 
-        if self.companion_accuracy is None:
-            self.companion_accuracy = (
+        if self.trustee_accuracy is None:
+            self.trustee_accuracy = (
                 self.source_evaluative_capacity * self.competence_reliable_group
             ) + (1 - self.source_evaluative_capacity) * (
                 1 - self.competence_unreliable_group
@@ -100,10 +100,10 @@ class Agent:
 
     def accuracy_information(self) -> float:
         probability_right_and_accept = (
-            self.companion_accuracy
+            self.trustee_accuracy
         ) * self.content_evaluative_capacity
 
-        probability_wrong_and_accept = (1 - self.companion_accuracy) * (
+        probability_wrong_and_accept = (1 - self.trustee_accuracy) * (
             1 - self.content_evaluative_capacity
         )
         probability_accept = probability_right_and_accept + probability_wrong_and_accept
