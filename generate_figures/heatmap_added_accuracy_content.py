@@ -24,23 +24,23 @@ def figure_heatmap_added_accuracy_content(filename: str = None):
     Heatmap of added accuracy"""
 
     # 0. Initialize variables
-    companion_accuracies = [round(0.55 + 0.05 * y, 2) for y in range(6)]
-    companion_accuracies.reverse()
+    trustee_accuracies = [round(0.55 + 0.05 * y, 2) for y in range(6)]
+    trustee_accuracies.reverse()
     content_evaluative_capacities = [round(0.55 + 0.05 * x, 2) for x in range(6)]
     df = pd.DataFrame(
-        index=companion_accuracies, columns=content_evaluative_capacities, dtype=float
+        index=trustee_accuracies, columns=content_evaluative_capacities, dtype=float
     )
     mask = np.zeros_like(df)
 
     # 1. Generate data about expected accuracy for various parameter settings
-    for companion_accuracy in companion_accuracies:
+    for trustee_accuracy in trustee_accuracies:
         for content_evaluative_capacity in content_evaluative_capacities:
             information_accuracy = Agent(
-                trustee_accuracy=companion_accuracy,
+                trustee_accuracy=trustee_accuracy,
                 content_evaluative_capacity=content_evaluative_capacity,
             ).accuracy_information()
-            df.at[companion_accuracy, content_evaluative_capacity] = round(
-                information_accuracy - companion_accuracy, 2
+            df.at[trustee_accuracy, content_evaluative_capacity] = round(
+                information_accuracy - trustee_accuracy, 2
             )
 
     # 2. Configure plot parameters
