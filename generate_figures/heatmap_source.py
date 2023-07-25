@@ -17,7 +17,7 @@ def figure_heatmap_source(
     degree_open_mindedness: int
         Degree of open-mindedness
     advantage: float
-        The competence advantage of the associating group
+        The competence advantage of the reliable group
         (disadvantage is represented by negative advantage)
 
     filename: str
