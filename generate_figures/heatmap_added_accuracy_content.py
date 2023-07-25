@@ -2,8 +2,8 @@ import os
 
 import numpy as np
 import pandas as pd
-
 from accuracy_calculator import Agent
+
 from generate_figures.plot_functions import plot_heatmap
 
 
@@ -36,7 +36,7 @@ def figure_heatmap_added_accuracy_content(filename: str = None):
     for companion_accuracy in companion_accuracies:
         for content_evaluative_capacity in content_evaluative_capacities:
             information_accuracy = Agent(
-                companion_accuracy=companion_accuracy,
+                trustee_accuracy=companion_accuracy,
                 content_evaluative_capacity=content_evaluative_capacity,
             ).accuracy_information()
             df.at[companion_accuracy, content_evaluative_capacity] = round(
@@ -47,9 +47,9 @@ def figure_heatmap_added_accuracy_content(filename: str = None):
     cbar_ticks = [0, 0.1, 0.2, 0.3]
     vmin = 0.00
     vmax = 0.30
-    title = "Added epistemic value of content evaluation ($p_I$ minus $p_C$)"
+    title = "Added epistemic value of content evaluation ($p_I$ minus $p_T$)"
     xlabel = "Content evaluative capacity ($p_{EC}$)"
-    ylabel = "Companion's accuracy ($p_C$)\n (without content evaluation)"
+    ylabel = "Trustee's accuracy ($p_T$)\n (without content evaluation)"
 
     # 3. Plot heatmap
     plot_heatmap(
