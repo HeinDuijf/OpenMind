@@ -4,12 +4,13 @@
 
 This repository is associated with a paper on the epistemic value of 
 open-mindedness (under review). The paper investigates the conditions under which 
-open-mindedness will be 
-epistemically valuable. One of the novel features of the analysis is that it starts 
-with some realistic assumptions: (1) people are not perfectly competent in forming their 
-own opinions, (2) people are not perfectly capable of evaluating the claims put forward 
-by others, and (3) people can only give consideration to a limited number of arguments 
-or opinions.
+open-mindedness will be epistemically valuable. One of the central features of the 
+analysis is that it represents an agent's competence and evaluative capacities using 
+*gradual scales*. Another novel feature is that it starts with three realistic 
+assumptions:
+1. people are not perfectly competent in forming their own opinions,
+2. people are not perfectly capable of evaluating the claims put forward by others, and
+3. people can only give consideration to a limited number of arguments or opinions.
 
 This repository contains code for computing the epistemic benefits of open-mindedness, 
 and for creating the figures of the paper. These results are visualized as heatmaps 
