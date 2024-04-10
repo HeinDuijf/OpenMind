@@ -2,8 +2,9 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7989054.svg)](https://doi.org/10.5281/zenodo.7989054)
 
-This repository is associated with a paper on the epistemic value of 
-open-mindedness (under review). The paper investigates the conditions under which 
+
+
+This repository is associated with the paper titled [When should one be open-minded?](https://doi.org/10.1007/s11098-024-02137-3) on the epistemic value of open-mindedness (accepted for publication at [Philosophical Studies](https://link.springer.com/journal/11098)). The paper investigates the conditions under which 
 open-mindedness will be epistemically valuable. One of the central features of the 
 analysis is that it represents an agent's competence and evaluative capacities using 
 *gradual scales*. Another novel feature is that it starts with three realistic 
@@ -53,15 +54,17 @@ configurations; each of the other scripts corresponds to one or multiple figures
 One of the figures requires us to compute the tipping point where open-mindedness 
 becomes epistemically beneficial above a given content evaluative capacity. The 
 script to compute this tipping point can be found in 
-`find_tipping_evaluation_content.py` and the corresponding function. 
+`find_tipping_evaluation_content.py` and the corresponding method. 
 
 ## 4. Licence and citation
-This repository accompanies an academic paper (under review). In the meantime, 
-please cite the code as follows:
+This repository accompanies an academic paper. Please cite the paper as follows: 
 
-[How to cite](CITATION.cff): 
+
+- Duijf, H. (forthcoming). When should one be open-minded? *Philosophical Studies*. https://doi.org/10.1007/s11098-024-02137-3.
+
+If appropriate, you can [cite this repository](CITATION.cff) as follows:
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7989054.svg)](https://doi.org/10.5281/zenodo.7989054)
-- Duijf, H. (2023). A model of the epistemic value of open-mindedness (v1.0.0). 
+- Duijf, H. (2023). A model of the epistemic value of open-mindedness (v1.0.1). 
 Zenodo. https://doi.org/10.5281/zenodo.7989054.
 
 Released under the [MIT licence](LICENCE.md).
